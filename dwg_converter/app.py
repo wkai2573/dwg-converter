@@ -1,4 +1,4 @@
-"""DWG 轉圖檔：拖曳 .dwg 到視窗，轉成 JPG 或 PNG。"""
+"""DWG 轉圖檔：拖曳 .dwg 到視窗，轉成 JPG、PNG 或 SVG。"""
 
 import ctypes
 import os
@@ -130,6 +130,9 @@ class App:
         fmt_row.grid(row=1, column=1, sticky="w")
         ttk.Radiobutton(fmt_row, text="JPG", variable=self.fmt, value="jpg").pack(side="left")
         ttk.Radiobutton(fmt_row, text="PNG", variable=self.fmt, value="png").pack(side="left", padx=(12, 0))
+        ttk.Radiobutton(fmt_row, text="SVG（向量，可無限放大）", variable=self.fmt, value="svg").pack(
+            side="left", padx=(12, 0)
+        )
 
         ttk.Label(opts, text="解析度（長邊）").grid(row=2, column=0, sticky="w", pady=3)
         ttk.Combobox(opts, textvariable=self.size, values=list(SIZE_PRESETS), state="readonly", width=16).grid(

@@ -99,6 +99,7 @@ def render_dxf(
 
     plt.rcParams["font.sans-serif"] = FONT_CANDIDATES
     plt.rcParams["axes.unicode_minus"] = False
+    plt.rcParams["svg.fonttype"] = "path"
 
     progress("讀取圖形")
     doc, _ = recover.readfile(str(dxf))
@@ -142,7 +143,7 @@ def render_dxf(
             out,
             dpi=PIXELS_PER_INCH,
             facecolor="white",
-            pil_kwargs={"quality": 92} if is_jpg else {},
+            **({"pil_kwargs": {"quality": 92}} if is_jpg else {}),
         )
     finally:
         plt.close(fig)
