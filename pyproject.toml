@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dwg-converter"
+version = "1.0.0"
+description = "拖曳 DWG 檔案，轉成 JPG 或 PNG 的桌面小工具"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+dependencies = [
+    "ezdxf>=1.4",
+    "matplotlib>=3.8",
+    "pillow>=10",
+    "tkinterdnd2>=0.4",
+]
+
+[project.gui-scripts]
+dwg-converter = "dwg_converter.app:main"
+
+[tool.setuptools]
+packages = ["dwg_converter"]

@@ -1,0 +1,26 @@
+name: 檢查
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  import-check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: 安裝
+        run: python -m pip install .
+
+      - name: 確認套件能匯入
+        run: python -c "import dwg_converter.converter, dwg_converter.app"
