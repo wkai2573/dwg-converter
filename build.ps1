@@ -24,7 +24,7 @@ if (-not (Test-Path .venv)) {
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
 $addData = $bundled | ForEach-Object { '--add-data'; "$libredwgDir\$_;vendor\libredwg" }
-.\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --windowed --name dwg-converter @addData run.py
+.\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --windowed --name dwg-converter --hidden-import matplotlib.backends.backend_svg @addData run.py
 if ($LASTEXITCODE -ne 0) { throw 'PyInstaller 打包失敗' }
 
 # dwg2dxf.exe 會在自己的資料夾找 DLL，PyInstaller 另外複製到頂層的那份是重複的
